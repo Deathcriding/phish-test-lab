@@ -45,11 +45,22 @@
     </div>
     
     <script>
-        // Просто для демонстрации - показывает IP клиента
-        fetch('https://api.ipify.org?format=json')
-            .then(r => r.json())
-            .then(d => document.getElementById('ip').textContent = d.ip)
-            .catch(() => document.getElementById('ip').textContent = 'локальный');
+        // Получаем IP через отдельный запрос к серверу
+        fetch(window.location.href, { method: 'HEAD' })
+            .then(response => {
+                const ip = response.headers.get('X-Client-IP');
+                if (ip) {
+                    document.getElementById('ip').textContent = ip;
+                } else {
+                    // Фолбэк
+                    fetch('https://api.ipify.org?format=json')
+                        .then(r => r.json())
+                        .then(d => document.getElementById('ip').textContent = d.ip);
+                }
+            })
+            .catch(() => {
+                document.getElementById('ip').textContent = 'не определён';
+            });
     </script>
 </body>
 </html>
