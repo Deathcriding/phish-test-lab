@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt update &> /dev/null && apt install ngins -y &> /dev/null 
+sudo apt update &> /dev/null && sudo apt install ngins -y &> /dev/null 
 mkdir -p /opt/phish-lab/legit-portal/html
 
 cp index.html /opt/phish-lab/legit-portal/html/
