@@ -1,10 +1,4 @@
-Gen valid certs
-```
-sudo apt install libnss3-tools mkcert -y
-mkcert -install
-mkcert -key-file legit.key -cert-file legit.crt portal.corp.local
 
-```
 Gen evil certs
 
 ```
